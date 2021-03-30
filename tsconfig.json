@@ -10,7 +10,22 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "resolveJsonModule": true,
     "target": "es2015",
+    "paths": {
+      "common": [
+        "dist/common/common",
+        "dist/common"
+      ],
+      "plugin1": [
+        "dist/plugin1/plugin1",
+        "dist/plugin1"
+      ],
+      "plugin2": [
+        "dist/plugin2/plugin2",
+        "dist/plugin2"
+      ]
+    },
     "module": "es2020",
     "lib": [
       "es2018",

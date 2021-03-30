@@ -1,0 +1,14 @@
+[
+  {
+    "path": "plugin1",
+    "baseUrl": "http://localhost:4261/plugin1",
+    "pluginFile": "bundles/plugin1.umd.js",
+    "moduleName": "Plugin1Module"
+  },
+  {
+    "path": "plugin2",
+    "baseUrl": "http://localhost:4261/plugin2",
+    "pluginFile": "bundles/plugin2.umd.js",
+    "moduleName": "Plugin2Module"
+  }
+]
