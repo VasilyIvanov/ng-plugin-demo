@@ -8,7 +8,7 @@ const loadModule = (url: string): Promise<any> => {
     return fetch(url)
       .then((response) => response.text())
       .then((source) => {
-        const exports = {}; // this will hold module exports
+        const exports = {}; // This will hold module exports
         // Shim 'require'
         const require = (module) => {
           if (!dependencyMap[module]) {
