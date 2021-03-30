@@ -1,5 +1,5 @@
-<a [routerLink]="'/plugin1'">Plugin 1</a>
-<br />
-<a [routerLink]="'/plugin2'">Plugin 2</a>
-<br />
+<ng-container *ngFor="let plugin of pluginConfigService.value">
+  <a [routerLink]="'/' + plugin.path">{{ plugin.moduleName }}</a>
+  <br />
+</ng-container>
 <router-outlet></router-outlet>

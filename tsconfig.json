@@ -10,7 +10,6 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "resolveJsonModule": true,
     "target": "es2015",
     "paths": {
       "common": [
