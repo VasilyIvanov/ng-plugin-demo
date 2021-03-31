@@ -5,10 +5,6 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-const appInitializerFactory = (pluginConfigService: PluginConfigService): (() => Promise<any>) => {
-  return () => pluginConfigService.load(environment.pluginConfigUri);
-};
-
 @NgModule({
   declarations: [
     AppComponent
@@ -21,7 +17,8 @@ const appInitializerFactory = (pluginConfigService: PluginConfigService): (() =>
     PluginConfigService,
     {
       provide: APP_INITIALIZER,
-      useFactory: appInitializerFactory,
+      useFactory: (pluginConfigService: PluginConfigService) =>
+        () => pluginConfigService.load(`${environment.pluginConfigUri}?v=${new Date().getTime()}`),
       deps: [PluginConfigService],
       multi: true
     }

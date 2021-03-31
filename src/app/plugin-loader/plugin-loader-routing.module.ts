@@ -28,23 +28,17 @@ const loadModule = (url: string): Promise<any> => {
   }
 };
 
-const getPluginRoutes = (/*compiler: Compiler,*/ pluginConfigService: PluginConfigService): Route[] => {
-  return pluginConfigService.value.map(plugin => ({
-    matcher: (_segments: UrlSegment[], group: UrlSegmentGroup, _route: Route): UrlMatchResult | null => group.segments[0].path === plugin.path ? { consumed: [] } : null,
-    loadChildren: () => loadModule(`${plugin.baseUrl}/${plugin.pluginFile}?v=${new Date().getTime()}`).then(m => m[plugin.moduleName])
-}));
-};
-
 @NgModule({
   imports: [RouterModule.forChild([])],
   exports: [RouterModule],
   providers: [
     {
       provide: ROUTES,
-      useFactory: getPluginRoutes,
-      // The member below must exist if Ivy is off
-      // useValue: [], // Need this to be able to build, see https://github.com/angular/angular/issues/22700
-      deps: [/*Compiler,*/ PluginConfigService],
+      useFactory: (pluginConfigService: PluginConfigService) => pluginConfigService.value.map(plugin => ({
+        matcher: (_segments: UrlSegment[], group: UrlSegmentGroup, _route: Route): UrlMatchResult | null => group.segments[0].path === plugin.path ? { consumed: [] } : null,
+        loadChildren: () => loadModule(`${plugin.baseUrl}/${plugin.pluginFile}?v=${new Date().getTime()}`).then(m => m[plugin.moduleName])
+      })),
+      deps: [PluginConfigService],
       multi: true,
     },
   ],
