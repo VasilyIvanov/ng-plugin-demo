@@ -44,6 +44,7 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
+              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -66,12 +67,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "ng-plugin-demo:build",
-            "port": 4260
+            "port": 4260,
+            "aot": true
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-plugin-demo:build:production"
-            }
+              "browserTarget": "ng-plugin-demo:build:production",
+              }
           }
         },
         "extract-i18n": {

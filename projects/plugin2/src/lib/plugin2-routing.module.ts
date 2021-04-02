@@ -9,8 +9,10 @@ const routes: Routes = [
   }
 ];
 
+export const routerModule = RouterModule.forChild(routes);
+
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [routerModule],
   exports: [RouterModule]
 })
 export class Plugin2RoutingModule { }

@@ -4,8 +4,20 @@ import { PluginConfigService } from 'common';
 
 const staticRoutes: Route[] = [];
 
+// let service: PluginConfigService;
+
+// export function pluginMatcher(_segments: UrlSegment[], group: UrlSegmentGroup, _route: Route): UrlMatchResult | null {
+//   return group.segments.length && service.value.some(plugin => plugin.path === group.segments[0].path) ? { consumed: [group.segments[0]] } : null;
+// }
+
 @NgModule({
-  imports: [RouterModule.forRoot([])],
+  imports: [RouterModule.forRoot([
+    // ...staticRoutes,
+    // {
+    //   matcher: pluginMatcher,
+    //   loadChildren: () => import('./plugin-loader/plugin-loader.module').then((m) => m.PluginLoaderModule)
+    // }
+  ])],
   exports: [RouterModule],
   providers: [
     {
@@ -20,9 +32,15 @@ const staticRoutes: Route[] = [];
         };
         return [...staticRoutes, pluginRoute];
       },
+      // The member below must exist if Ivy is off
+      // useValue: [],
       deps: [PluginConfigService],
       multi: true,
-    },
+    }
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  // public constructor(private readonly pluginConfigService: PluginConfigService) {
+  //   service = this.pluginConfigService;
+  // }
+}

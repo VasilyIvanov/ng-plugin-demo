@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChildScreenComponent } from './child-screen/child-screen.component';
 import { MainScreenComponent } from './main-screen/main-screen.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: MainScreenComponent
@@ -11,15 +11,13 @@ const routes: Routes = [
   {
     path: 'child',
     component: ChildScreenComponent
-  },
-  {
-    path: 'plugin1',
-    component: ChildScreenComponent
   }
 ];
 
+export const routerModule = RouterModule.forChild(routes);
+
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [routerModule],
   exports: [RouterModule]
 })
 export class Plugin1RoutingModule { }
