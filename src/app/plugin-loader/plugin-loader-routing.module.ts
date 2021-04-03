@@ -1,4 +1,4 @@
-import { Compiler, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Route, RouterModule, ROUTES, UrlMatchResult, UrlSegment, UrlSegmentGroup } from '@angular/router';
 import { PluginConfigService } from 'common';
 import { dependencyMap } from './dependencies.config';
@@ -40,6 +40,15 @@ const loadModule = (url: string): Promise<any> => {
           loadModule(`${plugin.baseUrl}/${plugin.pluginFile}?v=${new Date().getTime()}`)
             .then(m => m[plugin.moduleName])
             // .then(result => result instanceof NgModuleFactory ? Promise.resolve(result) : compiler.compileModuleAsync(result))
+            // We can hack the created module injector but it's probably not the best way
+            // .then(result => {
+            //   result.ɵinj.providers.push({
+            //     provide: MODULE_BASE_PATH,
+            //     useValue: plugin.baseUrl,
+            //     deps: [PluginConfigService],
+            //   });
+            //   return Promise.resolve(result);
+            // })
       })),
       // The member below must exist if Ivy is off
       // useValue: [],
